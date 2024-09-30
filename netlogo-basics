@@ -1,0 +1,4 @@
+; This small program is part of a course on Artificial Intelligence and serves as a brief introduction to NetLogo, a multi-agent simulation environment. 
+; It explains how to create a setup procedure in NetLogo to generate and randomly position 100 turtles, which are agents that move within the simulation space.
+; The goal is to create a setup procedure that generates 100 turtles and places them randomly in the space, pointing in random directions.
+; With some later modifications, the turtles will die as they collide with each other.
