@@ -2,3 +2,41 @@
 ; It explains how to create a setup procedure in NetLogo to generate and randomly position 100 turtles, which are agents that move within the simulation space.
 ; The goal is to create a setup procedure that generates 100 turtles and places them randomly in the space, pointing in random directions.
 ; With some later modifications, the turtles will die as they collide with each other.
+
+globals [deaths births]
+turtles-own [age]
+
+to setup
+  clear-all
+  create-turtles Pop_size [
+    setxy random-pxcor random-pycor
+    set heading random 360
+    set size 1.5
+    pen-down
+  ]
+  set deaths 0
+  set births 0
+  reset-ticks
+end
+
+to-report prob[x]
+  report (random-float 1 < x)
+end
+
+to go
+  ask turtles [set age age + 1
+    forward 0.1
+    ; Passo 3b
+    if count turtles-here > 1 [set deaths deaths + 1 die]
+    ]
+  ; Isto é para o passo 8
+  ask turtles [
+    if prob birth_prob [ set births births + 1
+      hatch 1 [
+        set age 0
+        set heading random 360 forward 1 ]
+    ]
+  ]
+  tick 
+end
+  
